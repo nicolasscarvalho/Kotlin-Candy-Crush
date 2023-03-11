@@ -16,7 +16,8 @@ class PlayActivity : AppCompatActivity() {
         val action = supportActionBar
         action?.hide()
 
-        playBtn.findViewById(R.id.playBtn)
+        // Erro de digitação: playBtn.findViewById(R.id.playBtn)
+        playBtn = findViewById(R.id.playBtn)
         playBtn.setOnClickListener {
             startActivity(Intent(
                 this@PlayActivity,

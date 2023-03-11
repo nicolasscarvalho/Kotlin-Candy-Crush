@@ -12,14 +12,16 @@ open class OnSwipeListener (context :Context?) : View.OnTouchListener
 
     var gestureDelector: GestureDetector
 
-    override fun onTouch(p0: View?, motionEvent: MotionEvent?): Boolean {
+    override fun onTouch(p0: View?, motionEvent: MotionEvent): Boolean {
         return gestureDelector.onTouchEvent(motionEvent)
     }
-    inner class GestureListener :GestureDetector.SimpleOnGestureListener() {
+    inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
 
         val SWIPE_THRESOLD = 100
         val SWIPE_VELOCITY_THRESOLD = 100
-        override fun onDown(e: MotionEvent?): Boolean {
+
+        // Erro do tutorial: forma de escrita
+        override fun onDown(e: MotionEvent): Boolean {
             return true
         }
 

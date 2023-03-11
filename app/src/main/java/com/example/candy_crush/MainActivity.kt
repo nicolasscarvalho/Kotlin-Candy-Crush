@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var mHandler: Handler
     private lateinit var scoreReult :TextView
     var score = 0
-    var interval = 100
+    var interval = 100L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         val displayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displayMetrics)
 
-        widthOfScreen = DisplayMetrics.widthPixels
+        widthOfScreen = displayMetrics.widthPixels
 
         var heightOfScreen = displayMetrics.heightPixels
 
@@ -136,22 +136,22 @@ class MainActivity : AppCompatActivity() {
             var isBlank :Boolean = candy.get(i).tag == notCandy
             var x = i
 
-                if (candy.get(x).tag as Int == chosedCandy
-                    && !isBlank
-                    && candy.get(x+noOfBlock).tag as Int == chosedCandy
-                    && candy.get(x+2*noOfBlock).tag as Int == chosedCandy
-                ){
-                    score = score + 3
-                    scoreReult.text = "$score"
-                    candy.get(x).setImageResource(notCandy)
-                    candy.get(x).setTag(notCandy)
-                    x = x + noOfBlock
-                    candy.get(x).setImageResource(notCandy)
-                    candy.get(x).setTag(notCandy)
-                    x = x + noOfBlock
-                    candy.get(x).setImageResource(notCandy)
-                    candy.get(x).setTag(notCandy)
-                }
+            if (candy.get(x).tag as Int == chosedCandy
+                && !isBlank
+                && candy.get(x+noOfBlock).tag as Int == chosedCandy
+                && candy.get(x+2*noOfBlock).tag as Int == chosedCandy
+            ){
+                score = score + 3
+                scoreReult.text = "$score"
+                candy.get(x).setImageResource(notCandy)
+                candy.get(x).setTag(notCandy)
+                x = x + noOfBlock
+                candy.get(x).setImageResource(notCandy)
+                candy.get(x).setTag(notCandy)
+                x = x + noOfBlock
+                candy.get(x).setImageResource(notCandy)
+                candy.get(x).setTag(notCandy)
+            }
 
         }
 
@@ -194,8 +194,10 @@ class MainActivity : AppCompatActivity() {
                 checkColumnForThree()
                 moveDownCandies()
             }
+
+            // Erro do tutorial: Forma de escrita ("r" do this)
             finally {
-                mHandler.postDelayed(r:this, interval)
+                mHandler.postDelayed(this, interval)
             }
         }
     }
