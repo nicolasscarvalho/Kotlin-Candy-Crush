@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     var score = 0
     var interval = 100L
 
+    var positions = 0..63
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -57,28 +59,48 @@ class MainActivity : AppCompatActivity() {
                 object :OnSwipeListener(this) {
                     override fun onSwipeRight() {
                         super.onSwipeRight()
+
                         candyToBeDragged = imageView.id
                         candyToBeReplaced = candyToBeDragged + 1
-                        candyInterChacge()
+
+                        if (positions.contains(candyToBeReplaced)) {
+                            candyInterChacge()
+                        }
+
                     }
 
                     override fun onSwipeLift() {
                         super.onSwipeLift()
+
                         candyToBeDragged = imageView.id
                         candyToBeReplaced = candyToBeDragged - 1
-                        candyInterChacge()
+
+                        if (positions.contains(candyToBeReplaced)) {
+                            candyInterChacge()
+                        }
+
                     }
 
                     override fun onSwipeTop() {
+
                         candyToBeDragged = imageView.id
                         candyToBeReplaced = candyToBeDragged - noOfBlock
-                        candyInterChacge()
+
+                        if (positions.contains(candyToBeReplaced)) {
+                            candyInterChacge()
+                        }
+
                     }
 
                     override fun onSwipeBottom() {
+
                         candyToBeDragged = imageView.id
                         candyToBeReplaced = candyToBeDragged + noOfBlock
-                        candyInterChacge()
+
+                        if (positions.contains(candyToBeReplaced)) {
+                            candyInterChacge()
+                        }
+
                     }
             })
         }
@@ -89,6 +111,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun candyInterChacge() {
+        println(candyToBeDragged)
+        println(candyToBeReplaced)
+
         var background :Int = candy.get(candyToBeReplaced).tag as Int
         var background1 :Int = candy.get(candyToBeDragged).tag as Int
 
